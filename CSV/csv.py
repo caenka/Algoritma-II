@@ -3,7 +3,7 @@ import os
 
 while True :
   menu = ['1. Data barang', '2. Pencarian Barang', '3. Penjualan', '4.Stok']
-  submenu1 = ['1.list barang', '2.input barang', '3.urut data sesuai harga', '4.kembali ke menu']
+  submenu1 = ['1.list barang', '2.input barang', '3.kembali ke menu utama']
   DATABASE_FILE = 'database.csv'
   database = []
 
@@ -20,7 +20,7 @@ while True :
 
   if aksi == 1:
     while True :
-      print('\n'.join(submenu1))  
+      print('\t'.join(submenu1))  
       aksiMenu1 = int (input ("pilih: "))
       
       if aksiMenu1 == 1:
@@ -46,23 +46,6 @@ while True :
                   print ("Barang telah ditambahkan")
 
       elif aksiMenu1 == 3:
-        print(database)
-
-        for i in range (len(database)):
-          database[i][2]=int(database[i][2])
-        #data = database.copy()
-        
-        b=len(database)
-        for x in range(b-1,0,-1):
-          for y in range(x):
-            if database[y][2]>database[y+1][2]:
-              temp=database[y+1]
-              database[y+1]=database[y]
-              database[y]=temp
-        print("%2s \t %10s \t %10s" %("ID","NAMA","HARGA"))
-        for row in database : 
-                print("%2s \t %10s \t %10s" %(row[0],row[1],row[2]))
-      elif aksiMenu1 == 4 :
         break
       else :
         print("salah input")
