@@ -3,7 +3,7 @@ import os
 
 while True :
   menu = ['1. Data barang', '2. Pencarian Barang', '3. Penjualan', '4.Stok']
-  submenu1 = ['1.list barang', '2.input barang', '3.urut data sesuai harga', '4.kembali ke menu']
+  submenu1 = ['1.list barang', '2.input barang', '3.urut data sesuai harga','4.urut data sesuai nama','5.kembali ke menu']
   DATABASE_FILE = 'database.csv'
   database = []
 
@@ -46,12 +46,10 @@ while True :
                   print ("Barang telah ditambahkan")
 
       elif aksiMenu1 == 3:
-        print(database)
-
-        for i in range (len(database)):
-          database[i][2]=int(database[i][2])
-        #data = database.copy()
-        
+        os.system("clear")
+        for data in range(len(database)):
+          database[data][2]=int(database[data][2])
+        #print(database)
         b=len(database)
         for x in range(b-1,0,-1):
           for y in range(x):
@@ -61,8 +59,34 @@ while True :
               database[y]=temp
         print("%2s \t %10s \t %10s" %("ID","NAMA","HARGA"))
         for row in database : 
-                print("%2s \t %10s \t %10s" %(row[0],row[1],row[2]))
+          print("%2s \t %10s \t %10s" %(row[0],row[1],row[2]))
+
       elif aksiMenu1 == 4 :
+        os.system("clear")
+        for data in range(len(database)):
+          database[data][1]=str(database[data][1])
+        #print(database)
+        b=len(database)
+        for x in range(b-1,0,-1):
+          for y in range(x):
+            if database[y][1]>database[y+1][1]:
+              temp=database[y+1]
+              database[y+1]=database[y]
+              database[y]=temp
+        print("%2s \t %10s \t %10s" %("ID","NAMA","HARGA"))
+        for row in database : 
+          print("%2s \t %10s \t %10s" %(row[0],row[1],row[2]))
+      elif aksiMenu1 == 5 :
+        break
+  
+  if aksi == 2:
+    cari = (input("Inputkan nama barang :"))
+    iterator = 0
+    for name in database :
+      if cari in name :
+        carisekarang = name 
+        print("%2s \t %10s \t %10s" %("ID","NAMA","HARGA"))
+        print("%2s \t %10s \t %10s" %(carisekarang[0],carisekarang[1],carisekarang[2]))
         break
       else :
-        print("salah input")
+        break
